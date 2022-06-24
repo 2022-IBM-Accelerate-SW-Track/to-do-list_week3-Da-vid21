@@ -43,6 +43,7 @@ class Home extends Component {
     });
     this.setState({
       todos: todos,
+      date: null
     });
   };  
   render() {
