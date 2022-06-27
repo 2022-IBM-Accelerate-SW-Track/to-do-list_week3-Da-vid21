@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button, TextField } from "@mui/material";
 import { DesktopDatePicker , LocalizationProvider} from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import "../component/AddTodo.css";
 
 class AddTodo extends Component {
   // Create a local react state of the this component with a content property set to nothing.
@@ -56,6 +57,7 @@ class AddTodo extends Component {
       // 4. The value of the text field also should reflect the local state of this component.
       <div>
         <TextField
+          
           label="Add New Item"
           variant="outlined"
           onChange={this.handleChange}
@@ -63,6 +65,7 @@ class AddTodo extends Component {
         />
         <LocalizationProvider dateAdapter={AdapterDateFns}>         
           <DesktopDatePicker
+              
               id="new-item-date"
               label="Due Date"
               value={this.state.due}
@@ -71,10 +74,10 @@ class AddTodo extends Component {
           />
         </LocalizationProvider>
         <Button
-          style={{ marginLeft: "10px" }}
+          style={{ marginLeft: "10px", marginTop: "10px"}}
           onClick={this.handleSubmit}
           variant="contained"
-          color="primary"
+          
         >
           Add
         </Button>
