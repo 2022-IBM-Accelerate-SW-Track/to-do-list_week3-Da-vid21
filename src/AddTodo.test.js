@@ -16,7 +16,8 @@ afterEach(() => {
   container = null;
 });
 
-test('test that App component renders Task', () => {
+
+ test('test that App component renders Task', () => {
   render(<App />);
   const inputTask = screen.getByRole('textbox', {name: /Add New Item/i});
   const inputDate = screen.getByPlaceholderText("mm/dd/yyyy");
@@ -29,4 +30,5 @@ test('test that App component renders Task', () => {
   const checkDate = screen.getByText(new RegExp(new Date(dueDate).toLocaleDateString(), "i"));
   expect(check).toBeInTheDocument();
   expect(checkDate).toBeInTheDocument();
+  
  });
