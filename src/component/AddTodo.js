@@ -1,27 +1,38 @@
 import React, { Component } from "react";
 import { Button, TextField } from "@mui/material";
+import { DesktopDatePicker , LocalizationProvider} from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import "../component/AddTodo.css";
 
 class AddTodo extends Component {
-  // Create a local react state of the this component with both content date property set to nothing.
+  // Create a local react state of the this component with a content property set to nothing.
   constructor() {
     super();
     this.state = {
       content: "",
-      date: ""
+      date: Date(""),
+      due: null
     };
+    
   }
-  // The handleChange function updates the react state with the new input value provided from the user and the current date/time.
+  // The handleChange function updates the react state with the new input value provided from the user.
   // "event" is the defined action a user takes. In this case, the event is triggered when the user types something
   // into the text field.
   handleChange = (event) => {
     this.setState({
       content: event.target.value,
-      date: Date().toLocaleString('en-US')
+      date: Date().toLocaleString('en-US'),
+    });
+    
+  };
+  handle_Date = (event) => {
+    this.setState({
+      due: new Date(event).toLocaleDateString()
     });
   };
   // The handleSubmit function collects the forms input and puts it into the react state.
   // event.preventDefault() is called to prevents default event behavior like refreshing the browser.
-  // this.props.addTodo(this.state) passes the current state (or user input and current date/time) into the addTodo function defined
+  // this.props.addTodo(this.state) passes the current state (or user input) into the addTodo function defined
   // in the Home.js file which then adds the input into the list.
   handleSubmit = (event) => {
     event.preventDefault();
@@ -29,9 +40,11 @@ class AddTodo extends Component {
       this.props.addTodo(this.state);
       this.setState({
         content: "",
-        date: ""
+        date: "",
+        due: null
       });
     }
+    
   };
   render() {
     return (
@@ -44,16 +57,27 @@ class AddTodo extends Component {
       // 4. The value of the text field also should reflect the local state of this component.
       <div>
         <TextField
+          
           label="Add New Item"
           variant="outlined"
           onChange={this.handleChange}
           value={this.state.content}
         />
+        <LocalizationProvider dateAdapter={AdapterDateFns}>         
+          <DesktopDatePicker
+              
+              id="new-item-date"
+              label="Due Date"
+              value={this.state.due}
+              onChange={this.handle_Date}
+              renderInput={(params) => <TextField {...params} />}
+          />
+        </LocalizationProvider>
         <Button
-          style={{ marginLeft: "10px" }}
+          style={{ marginLeft: "10px", marginTop: "10px"}}
           onClick={this.handleSubmit}
           variant="contained"
-          color="primary"
+          
         >
           Add
         </Button>

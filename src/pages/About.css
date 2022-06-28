@@ -27,7 +27,7 @@
 
 .name_title {
   font-size: 48px;
-  color: black;
+  color: #0f62fe;
   text-align: left;
   padding-bottom: 20px;
 }
@@ -37,6 +37,32 @@
 }
 
 .profile_image {
-  width: 500px;
+  max-width: 400px;
   height: auto;
+  border-radius: 50%;
+  
+}
+.profile_image :hover{
+  transform: skewY(20deg);
+
+}
+
+
+.about{
+  
+  left: 39%;
+  font-size: 70px;
+  font-size: 15vw;
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
+.about about{
+  color: rgb(0, 0, 0);
+}
+.about b{
+  color: #0f62fe;
+}
+.about :hover{
+  font-size: 75px;
 }
